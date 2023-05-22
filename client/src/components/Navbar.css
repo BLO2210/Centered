@@ -1,0 +1,124 @@
+nav {
+    background-color: #222;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .navbar {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar .left-menu,
+  .navbar .right-menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar .centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .navbar .centered-logo {
+    font-family: 'Arial', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #555555;
+    transition: transform 0.3s ease;
+  }
+  
+  .navbar .menu-icon,
+  .navbar .logout-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555555;
+    font-size: 20px;
+    margin: 0 10px;
+  }
+  
+  .navbar .menu-icon:hover,
+  .navbar .logout-button:hover {
+    color: #000000;
+  }
+  
+  @media (max-width: 767px) {
+    .navbar {
+      flex-direction: column;
+      padding: 20px;
+    }
+  
+    .navbar .left-menu,
+    .navbar .centered,
+    .navbar .right-menu {
+      margin-bottom: 10px;
+    }
+  }
+  
+  ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    margin: 0 10px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #141313;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: #007bff;
+  }
+  
+  button.centered {
+    background: none;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  button.centered:hover {
+    color: #007bff;
+  }
+  
+  .navbar .left-menu.expanded {
+    transform: translateX(0);
+  }
+  
+  .navbar .centered.expanded {
+    transform: translateX(-100%);
+  }
+  
+  /* Mobile Responsive Styles */
+  
+  @media (max-width: 768px) {
+    nav {
+      padding: 20px 10px;
+    }
+  
+    ul {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+    li {
+      margin: 10px;
+    }
+  }
+  
