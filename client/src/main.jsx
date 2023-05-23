@@ -8,7 +8,7 @@ import BaseLayout from './components/BaseLayout.jsx'
 import Register from './components/Register.jsx'
 import reducer from './store/reducer.js'
 import './index.css'
-// import ProtectedRoute from './components/ProtectedRoute'
+import ProtectedRoute from './components/ProtectedRoute'
 
 const store = createStore(
   reducer,
@@ -25,7 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<BaseLayout />} />
+          <Route path="/" element={<ProtectedRoute> <BaseLayout /></ProtectedRoute>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
