@@ -1,13 +1,15 @@
 import React from 'react';
 import Navbar from './Navbar.jsx';
 import App from '../App.jsx';
+import Form from './Form.jsx';
+
 import './BaseLayout.css';
 
 function BaseLayout() {
   return (
     <div>
       <Navbar />
-      <App />
+      <Form />
     </div>
   );
 }

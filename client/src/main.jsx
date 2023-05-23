@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { createStore } from "redux";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 import Login from './components/Login.jsx'
 import BaseLayout from './components/BaseLayout.jsx'
 import Register from './components/Register.jsx'
