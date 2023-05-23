@@ -34,7 +34,10 @@ function Register() {
 
   return (
     <div className="register-container">
-      <h1 className="register-title">Register</h1>
+      <div className="register-header">
+        <h1 className='logoh1'>Centered</h1>
+        <h1 className="register-title">Register</h1>
+      </div>
       <div className="register-block">
         <input
           className="register-input"

@@ -1,47 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
+body {
+  background: url('http://m.gettywallpapers.com/wp-content/uploads/2022/07/Wallpaper-Aesthetic-Nature.jpg') no-repeat center center fixed; 
+  background-size: cover;
+  font-family: 'Poppins', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .register-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.3s ease;
+  padding: 20px;
+}
+
+.register-container, .register-title, .register-input, .register-button, .login-button {
+  animation: slide-in 0.5s forwards;
+}
+
+.logoh1, .register-title {
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
-  
+  100% {
+    opacity: 1;
+  }
+}
+
+.logoh1 {
+  font-size: 2.5em;
+  color: #ffffff;
+  text-shadow: 1px 0 0 #aa949c, 0 -.5px 0 #aa949c, 0 .5px 0 #aa949c, -.5px 0 0 #aa949c;
+  margin-bottom: 0;
+  animation: fadeIn 4s ease-in-out;
+}
+
+
+.register-title {
+  font-size: 1.5em;
+  color: #F08A95;
+  text-shadow: 1px 0 0 #6a7185, 0 -.5px 0 #6a7185, 0 .5px 0 #6a7185, -.5px 0 0 #6a7185;
+  margin-bottom: 20px;
+}
+
+.register-block {
+  background: transparent;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+
+.register-input {
+  border: none;
+  border-bottom: 2px solid #F08A95;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 1em;
+  width: 100%;
+  color: #ffffff;
+  background: transparent;
+  outline: none;
+}
+
+.register-button, .login-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+}
+
+.register-button {
+  background: #F08A95;
+  margin-bottom: 10px;
+}
+
+.login-button {
+  background: #ffffff;
+  color: #F08A95;
+}
+
+@media screen and (max-width: 768px) {
+  .logoh1 {
+    font-size: 2em;
+  }
+
   .register-title {
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 1.2em;
   }
   
+  .register-container {
+    font-size: 1.2em;
+  }
+
   .register-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 300px;
-  }
-  
-  .register-input {
+    padding: 15px;
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    margin: 0 auto; /* Center the register block */
   }
-  
-  .register-button,
-  .login-button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
-    cursor: pointer;
+
+  .register-input, .register-button, .login-button {
+    font-size: 0.9em;
+    padding: 8px;
   }
-  
-  .register-button:hover,
-  .login-button:hover {
-    background-color: #0056b3;
+}
+
+@media screen and (min-width: 769px) {
+  .register-container {
+    width: 400px;
+    right: 0;
+    background:transparent;
   }
-  
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
