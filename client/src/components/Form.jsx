@@ -25,6 +25,7 @@ function Form() {
         const ratingData = {
             userId: userId,
             rating: rating,
+            sleepQuality:sleepQuality
         };
 
 
