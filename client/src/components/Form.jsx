@@ -5,10 +5,16 @@ import React, { useState } from 'react';
 
 function Form() {
     const [rating, setRating] = useState(5)
+    const [sleepQuality, setSleepQuality] = useState(5)
 
-    const handleRatingChange = (event) => {
-        setRating(event.target.value)
+    const handleRatingChange = (e) => {
+        setRating(e.target.value)
     };
+
+     const handleSleepQualityChange = (e) => {
+        setSleepQuality(e.target.value)
+     }
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -40,7 +46,7 @@ function Form() {
 
     return (
         <>
-            <h1>Please rate your mood today on a scale of 1-10</h1>
+            <h1>Please rate your mood today</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     type="range"
@@ -51,6 +57,15 @@ function Form() {
                     onChange={handleRatingChange}
                 />
                 <br />
+                <h1>How would you rate the quality of your sleep last night?</h1>
+                <input
+                    type="range"
+                    name="sleepQuality"
+                    min="1"
+                    max="10"
+                    value={sleepQuality}
+                    onChange={handleSleepQualityChange}
+                />
                 <button type="submit">Submit</button>
             </form>
         </>
