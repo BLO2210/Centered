@@ -1,9 +1,8 @@
-
-
-
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Form() {
+    const navigate = useNavigate();
     const [rating, setRating] = useState(5)
     const [sleepQuality, setSleepQuality] = useState(5)
 
@@ -16,19 +15,19 @@ function Form() {
      }
 
 
-    const handleSubmit = (event) => {
+     const handleSubmit = (event) => {
         event.preventDefault();
-
+    
         const userId = localStorage.getItem('userId');
-
-
+    
         const ratingData = {
             userId: userId,
             rating: rating,
             sleepQuality:sleepQuality
         };
-
-
+    
+        const history = useHistory(); // Get the useHistory function
+    
         fetch('http://localhost:8080/api/mood-rating', {
             method: 'POST',
             headers: {
@@ -39,11 +38,13 @@ function Form() {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data); 
+                navigate('/'); // Redirect to root route after the fetch request is completed
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
     };
+    
 
     return (
         <>

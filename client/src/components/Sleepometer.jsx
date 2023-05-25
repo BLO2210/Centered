@@ -34,7 +34,7 @@ const SleepGauge = () => {
                         nrOfLevels={10} 
                         percent={chartValue}
                         textColor={"#000000"}
-                        needleColor={"#345243"} 
+                        needleColor={"#345243"}
                         colors={["#FF5F6D", "#FFC371", "#3AA0FF"]} />
         </div>
     );

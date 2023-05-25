@@ -20,7 +20,7 @@ const Navbar = () => {
         {menuExpanded && (
           <ul className="expanded-menu">
             <li>
-              <Link to="/">Today</Link>
+              <Link to="/form">Today</Link>
             </li>
             <li>
               <Link to="/your-data">Your Data</Link>

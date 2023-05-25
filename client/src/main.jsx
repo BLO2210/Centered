@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom/client'
 import Login from './components/Login.jsx'
 import BaseLayout from './components/BaseLayout.jsx'
 import Register from './components/Register.jsx'
+import Form from './components/Form.jsx'
 import reducer from './store/reducer.js'
 import './index.css'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -28,6 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/" element={<ProtectedRoute> <BaseLayout /></ProtectedRoute>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/form" element={<Form />} />
         </Routes>
       </BrowserRouter>
     </Provider>
