@@ -25,7 +25,16 @@ const SleepGauge = () => {
 
     useEffect(() => {
         fetchAndProcessData();
+    
+        // Watch for changes in localStorage
+        const handleStorageChange = () => {
+            fetchAndProcessData();
+        };
+    
+        window.addEventListener('storage', handleStorageChange);
+        return () => window.removeEventListener('storage', handleStorageChange);
     }, []);
+    
 
     return (
         <div>

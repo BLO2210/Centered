@@ -10,7 +10,6 @@ function BaseLayout() {
   return (
     <div>
       <Navbar />
-      <Form/>
       <SleepGauge/>
     </div>
   );

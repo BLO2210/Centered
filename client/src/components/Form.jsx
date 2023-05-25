@@ -10,24 +10,22 @@ function Form() {
         setRating(e.target.value)
     };
 
-     const handleSleepQualityChange = (e) => {
+    const handleSleepQualityChange = (e) => {
         setSleepQuality(e.target.value)
-     }
+    }
 
 
-     const handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-    
+
         const userId = localStorage.getItem('userId');
-    
+
         const ratingData = {
             userId: userId,
             rating: rating,
-            sleepQuality:sleepQuality
+            sleepQuality: sleepQuality
         };
-    
-        const history = useHistory(); // Get the useHistory function
-    
+
         fetch('http://localhost:8080/api/mood-rating', {
             method: 'POST',
             headers: {
@@ -37,14 +35,17 @@ function Form() {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data); 
-                navigate('/'); // Redirect to root route after the fetch request is completed
+                console.log(data);
+                // after successful submission
+                localStorage.setItem('updated', Date.now());
+                navigate('/');
+
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
     };
-    
+
 
     return (
         <>
