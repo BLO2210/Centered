@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 function Form() {
     const [rating, setRating] = useState(5)
     const [sleepQuality, setSleepQuality] = useState(5)
+    const [productivityRating, setProductivityRating] = useState(5)
     const [nutritionRating, setNutritionRating] = useState('satisfied-nutritious')
 
     const handleRatingChange = (e) => {
@@ -14,6 +15,10 @@ function Form() {
 
     const handleSleepQualityChange = (e) => {
         setSleepQuality(e.target.value)
+    }
+
+    const handleProductivityRatingChange = (e) => {
+        setProductivityRating(e.target.value)
     }
 
     const handleNutritionRatingChange = (e) => {
@@ -30,6 +35,7 @@ function Form() {
             userId: userId,
             rating: rating,
             sleepQuality: sleepQuality,
+            productivityRating: productivityRating,
             nutritionRating: nutritionRating
         };
 
@@ -71,6 +77,16 @@ function Form() {
                     max="10"
                     value={sleepQuality}
                     onChange={handleSleepQualityChange}
+                />
+                <br/>
+                <h1>How would you rate your productivity today?</h1>
+                <input
+                    type="range"
+                    name="productivityRating"
+                    min="1"
+                    max="10"
+                    value={productivityRating}
+                    onChange={handleProductivityRatingChange}
                 />
                 <div>
                     <label>Nutrition Rating:</label>
