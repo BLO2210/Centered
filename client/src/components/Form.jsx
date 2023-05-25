@@ -5,6 +5,8 @@ function Form() {
     const navigate = useNavigate();
     const [rating, setRating] = useState(5)
     const [sleepQuality, setSleepQuality] = useState(5)
+    const [productivityRating, setProductivityRating] = useState(5)
+    const [nutritionRating, setNutritionRating] = useState('satisfied-nutritious')
 
     const handleRatingChange = (e) => {
         setRating(e.target.value)
@@ -14,6 +16,13 @@ function Form() {
         setSleepQuality(e.target.value)
     }
 
+    const handleProductivityRatingChange = (e) => {
+        setProductivityRating(e.target.value)
+    }
+
+    const handleNutritionRatingChange = (e) => {
+        setNutritionRating(e.target.value);
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -23,7 +32,9 @@ function Form() {
         const ratingData = {
             userId: userId,
             rating: rating,
-            sleepQuality: sleepQuality
+            sleepQuality: sleepQuality,
+            productivityRating: productivityRating,
+            nutritionRating: nutritionRating
         };
 
         fetch('http://localhost:8080/api/mood-rating', {
@@ -69,8 +80,38 @@ function Form() {
                     value={sleepQuality}
                     onChange={handleSleepQualityChange}
                 />
-                <h1>How would you rate your nutrition today? Choose one of the following</h1>
-                <h2></h2>
+                <br/>
+                <h1>How would you rate your productivity today?</h1>
+                <input
+                    type="range"
+                    name="productivityRating"
+                    min="1"
+                    max="10"
+                    value={productivityRating}
+                    onChange={handleProductivityRatingChange}
+                />
+                <div>
+                    <label>Nutrition Rating:</label>
+                    <select
+                        name="nutritionRating"
+                        value={nutritionRating}
+                        onChange={handleNutritionRatingChange}
+                    >
+                        <option value="satisfied-nutritious">
+                            I feel satisfied, and I ate nutritiously.
+                        </option>
+                        <option value="satisfied-not-nutritious">
+                            I feel satisfied, but I did not eat nutritiously.
+                        </option>
+                        <option value="not-satisfied-somewhat-nutritious">
+                            Not satisfied, but somewhat nutritious.
+                        </option>
+                        <option value="not-satisfied-not-nutritious">
+                            Not satisfied, and not nutritious.
+                        </option>
+                    </select>
+                </div>
+                <br />
                 <button type="submit">Submit</button>
             </form>
         </>
