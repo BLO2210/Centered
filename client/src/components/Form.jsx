@@ -67,6 +67,8 @@ function Form() {
                     value={sleepQuality}
                     onChange={handleSleepQualityChange}
                 />
+                <h1>How would you rate your nutrition today? Choose one of the following</h1>
+                <h2></h2>
                 <button type="submit">Submit</button>
             </form>
         </>
