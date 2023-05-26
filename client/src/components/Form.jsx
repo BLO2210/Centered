@@ -3,25 +3,31 @@ import { useNavigate } from 'react-router-dom';
 
 function Form() {
     const navigate = useNavigate();
-    const [rating, setRating] = useState(5)
-    const [sleepQuality, setSleepQuality] = useState(5)
-    const [productivityRating, setProductivityRating] = useState(5)
-    const [nutritionRating, setNutritionRating] = useState('satisfied-nutritious')
+    const [rating, setRating] = useState(5);
+    const [sleepQuality, setSleepQuality] = useState(5);
+    const [productivityRating, setProductivityRating] = useState(5);
+    const [nutritionRating, setNutritionRating] = useState(1);
 
     const handleRatingChange = (e) => {
-        setRating(e.target.value)
-    };
+        setRating(Number(e.target.value));
+    };    
 
     const handleSleepQualityChange = (e) => {
-        setSleepQuality(e.target.value)
+        setSleepQuality(e.target.value);
     }
 
     const handleProductivityRatingChange = (e) => {
-        setProductivityRating(e.target.value)
+        setProductivityRating(e.target.value);
     }
 
     const handleNutritionRatingChange = (e) => {
-        setNutritionRating(e.target.value);
+        const nutritionMapping = {
+            "satisfied-nutritious": 1,
+            "satisfied-not-nutritious": 2,
+            "not-satisfied-somewhat-nutritious": 3,
+            "not-satisfied-not-nutritious": 4
+        };
+        setNutritionRating(nutritionMapping[e.target.value]);
     }
 
     const handleSubmit = (event) => {
@@ -47,16 +53,13 @@ function Form() {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                // after successful submission
                 localStorage.setItem('updated', Date.now());
                 navigate('/');
-
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
     };
-
 
     return (
         <>
@@ -94,7 +97,6 @@ function Form() {
                     <label>Nutrition Rating:</label>
                     <select
                         name="nutritionRating"
-                        value={nutritionRating}
                         onChange={handleNutritionRatingChange}
                     >
                         <option value="satisfied-nutritious">
@@ -118,5 +120,4 @@ function Form() {
     );
 }
 
-
-export default Form
+export default Form;
