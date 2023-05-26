@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../css/Form.css'
 
 function Form() {
     const navigate = useNavigate();
@@ -60,6 +61,7 @@ function Form() {
 
     return (
         <>
+          <div className="form-container">
             <h1>Please rate your mood today</h1>
             <form onSubmit={handleSubmit}>
                 <input
@@ -114,6 +116,7 @@ function Form() {
                 <br />
                 <button type="submit">Submit</button>
             </form>
+            </div>
         </>
     );
 }
