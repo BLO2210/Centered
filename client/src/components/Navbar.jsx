@@ -13,6 +13,13 @@ const Navbar = () => {
     setCenteredExpanded(!centeredExpanded);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('jwtToken')
+    localStorage.removeItem('userId')
+    navigate('/login')
+
+}
+
   return (
     <nav className="navbar">
       <div className={`left-menu ${menuExpanded ? 'expanded' : ''}`}>
@@ -35,9 +42,11 @@ const Navbar = () => {
         <span className="centered-logo">Centered</span>
       </div>
       <div className="right-menu">
+        <button onClick={handleLogout}>
         <Link to="/login">
           <FontAwesomeIcon icon={faSignOutAlt} className="logout-button" />
         </Link>
+        </button>
       </div>
     </nav>
   );

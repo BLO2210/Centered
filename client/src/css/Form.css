@@ -1,15 +1,12 @@
-/* CSS for the Form component */
-/* CSS for the Form component */
 .form-container {
-    max-width: 400px;
+    max-width: 800px;
     margin: 40px auto 0;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #ffffff96;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    font-family: 'Roboto', Arial, sans-serif; 
-}
-  
+    font-family: 'Roboto', Arial, sans-serif;
+  }
   
   .form-container h1 {
     text-align: center;
@@ -31,8 +28,7 @@
   input[type='range'] {
     width: 100%;
     height: 10px;
-    border-radius: 5px;
-    background: #d3d3d3;
+    background-color: #d3d3d3;
     outline: none;
     opacity: 0.7;
     transition: opacity 0.2s;
@@ -43,7 +39,7 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #4c86ff;
+    background: #56ea06;
     cursor: pointer;
   }
   
@@ -51,17 +47,20 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #4c86ff;
+    background: #e46a05;
     cursor: pointer;
   }
+  
   
   select {
     width: 100%;
     padding: 8px;
     border-radius: 5px;
-    background-color: #f8f8f8;
-    border: 1px solid #d3d3d3;
+    background-color: #ffffff;
+    border: none;
     outline: none;
+    text-decoration:underline;
+    text-align: center;
   }
   
   button[type='submit'] {
@@ -76,4 +75,5 @@
   button[type='submit']:hover {
     background-color: #346fe8;
   }
+  
   
