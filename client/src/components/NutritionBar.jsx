@@ -19,6 +19,7 @@ function NutritionBar() {
 
         return [start, end];
     }
+    //urmom
 
     useEffect(() => {
         const userId = localStorage.getItem('userId');
