@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../css/Form.css'
 
 function Form() {
     const navigate = useNavigate();
+    const location = useLocation();
     const [rating, setRating] = useState(5);
     const [sleepQuality, setSleepQuality] = useState(5);
-    const [productivityRating, setProductivityRating] = useState(5);
     const [nutritionRating, setNutritionRating] = useState(1);
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
@@ -19,10 +19,6 @@ function Form() {
 
     const handleSleepQualityChange = (e) => {
         setSleepQuality(e.target.value);
-    }
-
-    const handleProductivityRatingChange = (e) => {
-        setProductivityRating(e.target.value);
     }
 
     const handleNutritionRatingChange = (e) => {
@@ -62,26 +58,29 @@ function Form() {
     }
 
     useEffect(() => {
-        const userId = localStorage.getItem('userId');
-        const date = new Date().toISOString().split('T')[0];
-
-        fetch(`http://localhost:8080/api/mood-rating/${userId}/${date}`)
-            .then((response) => response.json())
-            .then((data) => {
-                if (data) {
-                    setFormId(data.id);
-                    setRating(data.rating);
-                    setSleepQuality(data.sleepQuality);
-                    setProductivityRating(data.productivityRating);
-                    setNutritionRating(data.nutritionRating);
-                    setExercise(data.exercise);
-                    setTasks(data.tasks || []);
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    }, []);
+      const userId = localStorage.getItem('userId');
+      const date = new Date().toISOString().split('T')[0];
+  
+      fetch(`http://localhost:8080/api/mood-rating/${userId}/${date}`)
+          .then((response) => response.json())
+          .then((data) => {
+              if (Array.isArray(data) && data.length > 0) {
+                  data = data[0]; // assuming data is an array of forms, use the first form
+              }
+              if (data && typeof data === 'object' && data.hasOwnProperty('id')) {
+                  setFormId(data.id);
+                  setRating(data.rating || 5);
+                  setSleepQuality(data.sleepQuality || 5);
+                  setNutritionRating(data.nutritionRating || 1);
+                  setExercise(data.exercise || false);
+                  setTasks(data.tasks || []);
+              }
+          })
+          .catch((error) => {
+              console.error('Error:', error);
+          });
+  }, [location]); 
+  
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -92,7 +91,6 @@ function Form() {
             userId: userId,
             rating: rating,
             sleepQuality: sleepQuality,
-            productivityRating: productivityRating,
             nutritionRating: nutritionRating,
             exercise: exercise,
             tasks: tasks,
@@ -146,18 +144,6 @@ function Form() {
                         onChange={handleSleepQualityChange}
                     />
                     <span>{sleepQuality}</span>
-                </div>
-                <div className="form-control">
-                    <label>Rate your productivity today:</label>
-                    <input
-                        type="range"
-                        name="productivityRating"
-                        min="1"
-                        max="10"
-                        value={productivityRating}
-                        onChange={handleProductivityRatingChange}
-                    />
-                    <span>{productivityRating}</span>
                 </div>
                 <div className="form-control">
                     <label>How satisfied were you with your nutrition today?</label>
