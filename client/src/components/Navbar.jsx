@@ -32,9 +32,6 @@ const Navbar = () => {
             <li>
               <Link to="/your-data">Your Data</Link>
             </li>
-            <li>
-              <Link to="/productivity">Productivity</Link>
-            </li>
           </ul>
         )}
       </div>
