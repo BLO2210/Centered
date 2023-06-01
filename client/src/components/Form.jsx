@@ -64,17 +64,12 @@ function Form() {
       fetch(`http://localhost:8080/api/mood-rating/${userId}/${date}`)
           .then((response) => response.json())
           .then((data) => {
-              if (Array.isArray(data) && data.length > 0) {
-                  data = data[0]; // assuming data is an array of forms, use the first form
-              }
-              if (data && typeof data === 'object' && data.hasOwnProperty('id')) {
-                  setFormId(data.id);
+                  setFormId(data._id);
                   setRating(data.rating || 5);
                   setSleepQuality(data.sleepQuality || 5);
                   setNutritionRating(data.nutritionRating || 1);
                   setExercise(data.exercise || false);
                   setTasks(data.tasks || []);
-              }
           })
           .catch((error) => {
               console.error('Error:', error);
