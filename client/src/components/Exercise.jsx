@@ -44,7 +44,6 @@ function ExerciseTracker() {
         ))}
       </div>
     </div>
-  );
-}
+  );}  
 
 export default ExerciseTracker;

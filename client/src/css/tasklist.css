@@ -1,0 +1,42 @@
+/* CSS */
+
+.task-list {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5f2;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.64);
+    max-width: 400px; /* Adjust the maximum width as per your preference */
+    margin: 0 auto; /* Center the component horizontally */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    text-align: center;
+  }
+  
+  
+  .task-list-heading {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .task-list-items {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .task-list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-direction: column; /* Display tasks in a column */
+  }
+  
+  .task-checkbox {
+    margin-bottom: 5px; /* Add some space below the checkbox */
+  }
+  
+  .task-name {
+    color: #555;
+  }
+  
+  
