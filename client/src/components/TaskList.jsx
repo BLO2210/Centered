@@ -1,51 +1,6 @@
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-
-// const TaskList = () => {
-//   const [tasks, setTasks] = useState([]);
-
-//   useEffect(() => {
-//     const fetchTasks = async () => {
-//       try {
-//         const userId = localStorage.getItem('userId');
-//         if (userId) {
-//           const response = await axios.get(`http://localhost:8080/api/tasks/${userId}`, {
-//             // Pass any necessary authentication headers or parameters
-//           });
-//           setTasks(response.data);
-//         } else {
-//           console.error('User ID not found in local storage.');
-//         }
-//       } catch (error) {
-//         console.error('Error fetching tasks:', error);
-//       }
-//     };
-
-//     fetchTasks();
-//   }, []);
-
-
-//   return (
-//     <div>
-//       <h2>Tasks:</h2>
-//       <ul>
-//         {tasks.map((task) => (
-//           <li key={task._id}>
-//             <input type="checkbox" checked={task.isComplete} />
-//             {task.taskName}
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
-
-// export default TaskList;
-
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
 
 const TaskList = () => {
     const [tasks, setTasks] = useState([]);
@@ -55,11 +10,27 @@ const TaskList = () => {
         const fetchTasks = async () => {
           try {
             if (userId) {
-              const response = await axios.get(`http://localhost:8080/api/tasks/${userId}`);
-              setTasks(response.data.map(task => ({
-                ...task,
-                isComplete: task.isComplete || false, // Set isComplete to false if it is null or undefined
-              })));
+              const response = await axios.get(`http://localhost:8080/api/users/${userId}`);
+              
+              const today = new Date();
+              today.setHours(0, 0, 0, 0);
+
+              const tasksToday = [];
+
+              response.data.moodRatings.forEach(moodRating => {
+                const moodRatingDate = new Date(moodRating.timestamp);
+                moodRatingDate.setHours(0, 0, 0, 0);
+                
+                if(moodRatingDate.getTime() === today.getTime()){
+                  tasksToday.push(...moodRating.tasks.map(task => ({
+                    ...task,
+                    isComplete: task.isComplete || false, 
+                  })));
+                }
+              });
+
+              setTasks(tasksToday);
+
             } else {
               console.error('User ID not found in local storage.');
             }
@@ -72,7 +43,6 @@ const TaskList = () => {
           fetchTasks();
         }
       }, [userId]);
-      
       
 
     const handleCheckboxChange = async (taskId, isChecked) => {
@@ -115,3 +85,4 @@ const TaskList = () => {
 };
 
 export default TaskList;
+
