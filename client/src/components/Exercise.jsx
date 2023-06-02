@@ -30,10 +30,12 @@ function ExerciseTracker() {
   }, []);
   
   return (
-    <div>
-      You've worked out {workoutDays} days this week.
+    <div className="workout-stats">
+      <h2 className="title">Workout Stats</h2>
+      <p className="description">
+        You've worked out {workoutDays} {workoutDays === 1 ? 'day' : 'days'} this week.
+      </p>
     </div>
-  );
-}
+  );}  
 
 export default ExerciseTracker;
