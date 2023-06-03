@@ -66,17 +66,18 @@ const TaskList = () => {
       
       
     return (
-        <div>
-            <h2>Tasks:</h2>
-            <ul>
+        <div class = "task-list">
+            <h2 class = "task-list-heading">Tasks:</h2>
+            <ul class = "task-list-items">
                 {tasks.map((task) => (
-                    <li key={task._id}>
+                    <li key={task._id} class = "task-list-item">
                         <input
+                            class = "task-checkbox"
                             type="checkbox"
                             checked={task.isComplete}
                             onChange={(e) => handleCheckboxChange(task._id, e.target.checked)}
                         />
-                        {task.taskName}
+                        <p class = "task-name">{task.taskName}</p>
                     </li>
                 ))}
             </ul>

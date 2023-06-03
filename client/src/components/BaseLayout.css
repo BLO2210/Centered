@@ -1,4 +1,4 @@
-html,
+/* html,
 body {
   height: 100%;
   margin: 0;
@@ -12,4 +12,25 @@ body {
 
 .BaseLayout {
   flex: 1;
+} */
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-left {
+  align-self: flex-start;
+}
+
+.bottom-right {
+  align-self: flex-end;
+}
+
+.bottom-left {
+  align-self: flex-start;
+}
+
+.nutrition-bar {
+  width: 25rem;
 }
