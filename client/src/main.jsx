@@ -7,6 +7,7 @@ import Login from './components/Login.jsx'
 import BaseLayout from './components/BaseLayout.jsx'
 import Register from './components/Register.jsx'
 import Form from './components/Form.jsx'
+import YourData from './components/YourData.jsx'
 import reducer from './store/reducer.js'
 import './index.css'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -29,7 +30,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/" element={<ProtectedRoute> <BaseLayout /></ProtectedRoute>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/form" element={<Form />} />
+          <Route path="/form" element={<ProtectedRoute> <Form /></ProtectedRoute>} />
+          <Route path="/YourData" element={<ProtectedRoute> <YourData /></ProtectedRoute>} />
         </Routes>
       </BrowserRouter>
     </Provider>

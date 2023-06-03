@@ -30,7 +30,7 @@ const Navbar = () => {
               <Link to="/form">Today</Link>
             </li>
             <li>
-              <Link to="/your-data">Your Data</Link>
+              <Link to="/YourData">Your Data</Link>
             </li>
           </ul>
         )}
