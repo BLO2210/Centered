@@ -1,103 +1,98 @@
-import React, { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
-import { Chart, CategoryScale } from 'chart.js';
-import axios from "axios";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Line } from "react-chartjs-2"
+import {
+  Chart as ChartJS,
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement
+} from 'chart.js';
 
-Chart.register(CategoryScale);
+ChartJS.register(
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement
+)
 
-function DataGraph() {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [user, setUser] = useState(null);
-  const [dataOptions, setDataOptions] = useState({
-    sleep: false,
-    nutrition: false,
-    rating: false,
-  });
+const MoodGraph = () => {
+  const [moodData, setMoodData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [filterVariable, setFilterVariable] = useState('rating');
 
   const userId = localStorage.getItem('userId');
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`/api/users/${userId}`);
+      if (response.status !== 200) {
+        console.error(`Error: Received status code ${response.status}`);
+      } else if (!response.data.moodRatings) {
+        console.error('Error: No mood ratings in response data');
+      } else {
+        setMoodData(response.data.moodRatings);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  
+
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/api/users/${userId}`)
-      .then((response) => setUser(response.data))
-      .catch((err) => console.error(err));
+    fetchData();
   }, [userId]);
 
-  const chartData = {
-    labels: user?.moodRatings?.map((rating) => new Date(rating.timestamp).getDay()) || [],
-    datasets: [
-      {
-        label: 'Sleep Quality',
-        data: user?.moodRatings?.map((rating) => rating.sleepQuality) || [],
-        borderColor: dataOptions.sleep ? ['rgba(75,192,192,1)'] : ['transparent'],
-        borderWidth: 2,
-      },
-      {
-        label: 'Nutrition Rating',
-        data: user?.moodRatings?.map((rating) => rating.nutritionRating) || [],
-        borderColor: dataOptions.nutrition ? ['rgba(255,206,86,1)'] : ['transparent'],
-        borderWidth: 2,
-      },
-      {
-        label: 'Mood Rating',
-        data: user?.moodRatings?.map((rating) => rating.rating) || [],
-        borderColor: dataOptions.rating ? ['rgba(255,99,132,1)'] : ['transparent'],
-        borderWidth: 2,
-      },
-    ],
-  };
+  useEffect(() => {
+    if (startDate && endDate) {
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+      const filtered = moodData.filter((item) => {
+        const itemDate = new Date(item.timestamp);
+        return itemDate >= start && itemDate <= end;
+      });
+      setFilteredData(filtered);
+    }
+  }, [startDate, endDate, moodData]);
+
+  const chartLabels = filteredData.map((item) => new Date(item.timestamp).toLocaleDateString());
+  const chartData = filteredData.map((item) => item[filterVariable]);
 
   return (
     <div>
-      <h1>Data Graph</h1>
-      <div>
-        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-        <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
-        <label>
-          <input
-            type="checkbox"
-            name="sleep"
-            checked={dataOptions.sleep}
-            onChange={(e) =>
-              setDataOptions({ ...dataOptions, sleep: e.target.checked })
-            }
-          />
-          Sleep Quality
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            name="nutrition"
-            checked={dataOptions.nutrition}
-            onChange={(e) =>
-              setDataOptions({ ...dataOptions, nutrition: e.target.checked })
-            }
-          />
-          Nutrition Rating
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            name="rating"
-            checked={dataOptions.rating}
-            onChange={(e) =>
-              setDataOptions({ ...dataOptions, rating: e.target.checked })
-            }
-          />
-          Mood Rating
-        </label>
-      </div>
-      {user && (
-        <Line
-          data={chartData}
-          key={Math.random()}
-        />
-      )}
+      <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+      <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+      <select value={filterVariable} onChange={(e) => setFilterVariable(e.target.value)}>
+        <option value="rating">Mood Rating</option>
+        <option value="sleepQuality">Sleep Quality</option>
+        <option value="nutritionRating">Nutrition Rating</option>
+        <option value="exercise">Exercise</option>
+      </select>
+
+      <Line 
+        data={{
+          labels: chartLabels,
+          datasets: [{
+            label: filterVariable,
+            data: chartData,
+            fill: false,
+            backgroundColor: 'rgb(75, 192, 192)',
+            borderColor: 'rgba(75, 192, 192, 0.2)',
+          }]
+        }}
+        options={{
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        }}
+      />
     </div>
   );
-}
+};
 
-export default DataGraph;
+export default MoodGraph;
