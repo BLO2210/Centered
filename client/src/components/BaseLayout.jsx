@@ -10,15 +10,24 @@ import './BaseLayout.css';
 
 function BaseLayout() {
   return (
-    <div>
+    <div className="container">
       <Navbar />
-      <SleepGauge/>
-      <TaskList/>
-      <NutritionBar />
+      <div className="top-left">
+        <SleepGauge/>
+      </div>
+      <div className="bottom-right">
+        <TaskList/>
+      </div>
+      <div className="bottom-left">
+        <div className="nutrition-bar">
+          <NutritionBar />
+        </div>
+      </div>
       <MoodBar />
       <Exercise />
     </div>
   );
 }
+
 
 export default BaseLayout;
