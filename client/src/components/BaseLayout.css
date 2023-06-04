@@ -17,6 +17,7 @@ body {
 .container {
   display: flex;
   flex-direction: column;
+  background: radial-gradient(#ffdcdc, #c47878);
 }
 
 .top-left {
@@ -33,4 +34,9 @@ body {
 
 .nutrition-bar {
   width: 25rem;
+}
+
+.mood {
+  position: relative;
+  left: -500px;
 }

@@ -4,6 +4,9 @@
     padding: 20px;
     border-radius: 10px;
     width: 30rem;
+    border: 4px solid #000;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
   
   .week-container {
