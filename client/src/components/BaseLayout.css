@@ -1,58 +1,103 @@
-/* html,
 body {
-  height: 100%;
+  font-family: 'Helvetica Neue', sans-serif;
+  color: #333;
+  background-color: #f0f0f0;
   margin: 0;
-}
-
-#root {
-  height: 100%;
+  padding: 0;
+  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Set body as a column */
+  justify-content: flex-start; /* Align content at the top */
+  align-items: center;
+  min-height: 100vh; /* Minimum viewport height */
 }
 
-.BaseLayout {
-  flex: 1;
-} */
-
-
-
-/* valid styling below */
-/* 
-body {
-  background: radial-gradient(#ffdcdc, #c47878);
-} */
-
+.navbar {
+  position: fixed; /* Fix the navbar at the top */
+  top: 0;
+  left: 0; /* Add left and right properties */
+  right: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1; /* Ensure the navbar is on top of other elements */
+}
 
 .container {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  height: 100%; /* Adjust to full height */
+  margin-top: 60px; /* Add space below the fixed navbar */
+}
+
+.left,
+.right {
   display: flex;
   flex-direction: column;
-  background: radial-gradient(#ffdcdc, #c47878);
-  position:relative;
+  justify-content: space-between;
+  width: 48%;
 }
 
-.top-left {
-  align-self: flex-start;
+.sleep-gauge,
+.nutrition-bar,
+.mood-bar,
+.exercise-container,
+.task-listB {
+  flex-grow: 1;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 0px;
 }
 
-.bottom-right {
-  align-self: flex-end;
-  margin-bottom: -60px;
+.sleep-gauge:last-child,
+.nutrition-bar:last-child,
+.mood-bar:last-child,
+.exercise-container:last-child,
+.task-listB:last-child {
+  margin-bottom: 0;
 }
 
-.bottom-left {
-  align-self: flex-start;
-  margin-top: -450px;
-  margin-bottom: auto;
+.task-listB{
+  text-align: center;
+  width: 300px;
 }
 
-.nutrition-bar {
-  width: 25rem;
+.task-list {
+  margin-top: 20px;
+  width: 300px;
 }
 
-.mood {
-  position: relative;
-  left: -40px;
-} 
+.task-list-heading {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
 
+.task-list-items {
+  list-style-type:none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
 
+.task-list-item {
+  margin-bottom: 8px;
+}
+
+.task-checkbox-label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.task-checkbox {
+  margin-right: 8px;
+}
+
+.task-name {
+  font-size: 16px;
+}
 

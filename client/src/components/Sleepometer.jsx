@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import GaugeChart from 'react-gauge-chart'
 import axios from 'axios';
 import moment from 'moment';
+import './Sleepometer.css'
 
 const SleepGauge = () => {
     const [chartValue, setChartValue] = useState(0);
@@ -44,7 +45,7 @@ const SleepGauge = () => {
                         percent={chartValue}
                         textColor={"#000000"}
                         needleColor={"#345243"}
-                        colors={["#FF5F6D", "#FFC371", "#3AA0FF"]} />
+                        colors={["orange", "green"]} />
         </div>
     );
 };

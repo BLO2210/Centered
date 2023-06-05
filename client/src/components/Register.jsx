@@ -33,6 +33,7 @@ function Register() {
   };
 
   return (
+    <div className = "background-image">
     <div className="register-container">
       <div className="register-header">
         <h1 className='logoh1'>Centered</h1>
@@ -61,6 +62,7 @@ function Register() {
           Login
         </button>
       </div>
+    </div>
     </div>
   );
 }

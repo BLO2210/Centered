@@ -19,6 +19,10 @@ nav {
     align-items: center;
   }
   
+.navbar .right-menu{
+  padding-right: 50px;
+}
+
   .navbar .centered {
     display: flex;
     align-items: center;
@@ -42,6 +46,10 @@ nav {
     font-size: 20px;
     margin: 0 10px;
   }
+/* 
+  .navbar .logout-button {
+    padding-right: 50px;
+  } */
   
   .navbar .menu-icon:hover,
   .navbar .logout-button:hover {
