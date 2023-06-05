@@ -8,6 +8,7 @@ import {
   LinearScale,
   PointElement
 } from 'chart.js';
+import './DataGraph.css'
 
 ChartJS.register(
   LineElement,
@@ -16,18 +17,23 @@ ChartJS.register(
   PointElement
 )
 
-const MoodGraph = () => {
+const colors = {
+  rating: 'rgba(75, 192, 192, 0.2)',
+  sleepQuality: 'rgba(255, 206, 86, 0.2)',
+  nutritionRating: 'rgba(255, 99, 132, 0.2)',
+  exercise: 'rgba(153, 102, 255, 0.2)'
+};
+
+const MoodGraph = ({ startDate, setStartDate, endDate, setEndDate }) => {
   const [moodData, setMoodData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [filterVariable, setFilterVariable] = useState('rating');
+  const [filterVariables, setFilterVariables] = useState([]);
 
   const userId = localStorage.getItem('userId');
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`/api/users/${userId}`);
+      const response = await axios.get(`http://localhost:8080/api/users/${userId}`);
       if (response.status !== 200) {
         console.error(`Error: Received status code ${response.status}`);
       } else if (!response.data.moodRatings) {
@@ -39,7 +45,6 @@ const MoodGraph = () => {
       console.error('Error fetching data:', error);
     }
   };
-  
 
   useEffect(() => {
     fetchData();
@@ -57,30 +62,65 @@ const MoodGraph = () => {
     }
   }, [startDate, endDate, moodData]);
 
+  const handleCheckboxChange = (e) => {
+    const { checked, value } = e.target;
+    if (checked) {
+      setFilterVariables([...filterVariables, value]);
+    } else {
+      setFilterVariables(filterVariables.filter(variable => variable !== value));
+    }
+  };
+
   const chartLabels = filteredData.map((item) => new Date(item.timestamp).toLocaleDateString());
-  const chartData = filteredData.map((item) => item[filterVariable]);
+  const chartDatasets = filterVariables.map((variable) => ({
+    label: variable,
+    data: filteredData.map((item) => item[variable]),
+    fill: false,
+    backgroundColor: colors[variable],
+    borderColor: colors[variable],
+  }));
 
   return (
-    <div>
-      <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-      <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-      <select value={filterVariable} onChange={(e) => setFilterVariable(e.target.value)}>
-        <option value="rating">Mood Rating</option>
-        <option value="sleepQuality">Sleep Quality</option>
-        <option value="nutritionRating">Nutrition Rating</option>
-        <option value="exercise">Exercise</option>
-      </select>
+    <div className='mood-graph-container'>
+      <div>
+        <label>
+          <input
+            type="checkbox"
+            value="rating"
+            onChange={handleCheckboxChange}
+          />
+          Mood Rating
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            value="sleepQuality"
+            onChange={handleCheckboxChange}
+          />
+          Sleep Quality
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            value="nutritionRating"
+            onChange={handleCheckboxChange}
+          />
+          Nutrition Rating
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            value="exercise"
+            onChange={handleCheckboxChange}
+          />
+          Exercise
+        </label>
+      </div>
 
       <Line 
         data={{
           labels: chartLabels,
-          datasets: [{
-            label: filterVariable,
-            data: chartData,
-            fill: false,
-            backgroundColor: 'rgb(75, 192, 192)',
-            borderColor: 'rgba(75, 192, 192, 0.2)',
-          }]
+          datasets: chartDatasets,
         }}
         options={{
           responsive: true,
