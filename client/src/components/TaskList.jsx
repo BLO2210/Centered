@@ -7,37 +7,37 @@ const TaskList = () => {
     const userId = localStorage.getItem('userId');
 
     useEffect(() => {
-        const fetchTasks = async () => {
-          try {
-            if (userId) {
-              const response = await axios.get(`http://localhost:8080/api/users/${userId}`);
-              
-              const today = new Date();
-              today.setHours(0, 0, 0, 0);
-
-              const tasksToday = [];
-
-              response.data.moodRatings.forEach(moodRating => {
-                const moodRatingDate = new Date(moodRating.timestamp);
-                moodRatingDate.setHours(0, 0, 0, 0);
-                
-                if(moodRatingDate.getTime() === today.getTime()){
-                  tasksToday.push(...moodRating.tasks.map(task => ({
-                    ...task,
-                    isComplete: task.isComplete || false, 
-                  })));
-                }
-              });
-
-              setTasks(tasksToday);
-
-            } else {
-              console.error('User ID not found in local storage.');
-            }
-          } catch (error) {
-            console.error('Error fetching tasks:', error);
+      const fetchTasks = async () => {
+        try {
+          if (userId) {
+            const response = await axios.get(`http://localhost:8080/api/users/${userId}`);
+      
+            const today = new Date();
+            const todayString = today.toISOString().split('T')[0];
+      
+            const tasksToday = [];
+      
+            response.data.moodRatings.forEach(moodRating => {
+              const moodRatingDateString = new Date(moodRating.timestamp).toISOString().split('T')[0];
+      
+              if(moodRatingDateString === todayString){
+                tasksToday.push(...moodRating.tasks.map(task => ({
+                  ...task,
+                  isComplete: task.isComplete || false, 
+                })));
+              }
+            });
+      
+            setTasks(tasksToday);
+      
+          } else {
+            console.error('User ID not found in local storage.');
           }
-        };
+        } catch (error) {
+          console.error('Error fetching tasks:', error);
+        }
+      };
+      
       
         if (userId) {
           fetchTasks();
@@ -66,13 +66,13 @@ const TaskList = () => {
       
       
     return (
-        <div class = "task-list">
-            <h2 class = "task-list-heading">Tasks:</h2>
-            <ul class = "task-list-items">
+        <div className = "task-list">
+            <h2 className = "task-list-heading">Tasks:</h2>
+            <ul className = "task-list-items">
                 {tasks.map((task) => (
-                    <li key={task._id} class = "task-list-item">
+                    <li key={task._id} className = "task-list-item">
                         <input
-                            class = "task-checkbox"
+                            className = "task-checkbox"
                             type="checkbox"
                             checked={task.isComplete}
                             onChange={(e) => handleCheckboxChange(task._id, e.target.checked)}
@@ -86,12 +86,3 @@ const TaskList = () => {
 };
 
 export default TaskList;
-
-
-
-
-
-
-
-
-
