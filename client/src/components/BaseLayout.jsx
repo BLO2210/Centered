@@ -22,11 +22,12 @@ function BaseLayout() {
         <div className="nutrition-bar">
           <NutritionBar />
         </div>
-      </div>
+      
       <div class = "mood">
       <MoodBar />
       </div>
       <Exercise />
+    </div>
     </div>
   );
 }

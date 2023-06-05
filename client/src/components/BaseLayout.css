@@ -14,10 +14,20 @@ body {
   flex: 1;
 } */
 
+
+
+/* valid styling below */
+/* 
+body {
+  background: radial-gradient(#ffdcdc, #c47878);
+} */
+
+
 .container {
   display: flex;
   flex-direction: column;
   background: radial-gradient(#ffdcdc, #c47878);
+  position:relative;
 }
 
 .top-left {
@@ -26,10 +36,13 @@ body {
 
 .bottom-right {
   align-self: flex-end;
+  margin-bottom: -60px;
 }
 
 .bottom-left {
   align-self: flex-start;
+  margin-top: -450px;
+  margin-bottom: auto;
 }
 
 .nutrition-bar {
@@ -38,5 +51,8 @@ body {
 
 .mood {
   position: relative;
-  left: -500px;
-}
+  left: -40px;
+} 
+
+
+
