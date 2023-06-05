@@ -27,7 +27,7 @@
   }
   
   .progress-bar-fill {
-    background-color: #ff8fb7; /* Adjust the color as per your preference */
+    background-color: rgb(242, 137, 137); /* Adjust the color as per your preference */
     height: 100%;
   }
   

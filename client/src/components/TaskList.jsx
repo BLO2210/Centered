@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../css/tasklist.css'
+// import '../css/tasklist.css'
+import './BaseLayout.css';
 
 const TaskList = () => {
     const [tasks, setTasks] = useState([]);
@@ -65,24 +66,26 @@ const TaskList = () => {
       };
       
       
-    return (
-        <div className = "task-list">
-            <h2 className = "task-list-heading">Tasks:</h2>
-            <ul className = "task-list-items">
-                {tasks.map((task) => (
-                    <li key={task._id} className = "task-list-item">
-                        <input
-                            className = "task-checkbox"
-                            type="checkbox"
-                            checked={task.isComplete}
-                            onChange={(e) => handleCheckboxChange(task._id, e.target.checked)}
-                        />
-                        <p class = "task-name">{task.taskName}</p>
-                    </li>
-                ))}
-            </ul>
+      return (
+        <div className="task-list">
+          <h2 className="task-list-heading">Tasks:</h2>
+          <ul className="task-list-items">
+            {tasks.map((task) => (
+              <li key={task._id} className="task-list-item">
+                <label className="task-checkbox-label">
+                  <input
+                    className="task-checkbox"
+                    type="checkbox"
+                    checked={task.isComplete}
+                    onChange={(e) => handleCheckboxChange(task._id, e.target.checked)}
+                  />
+                  <span className="task-name">{task.taskName}</span>
+                </label>
+              </li>
+            ))}
+          </ul>
         </div>
-    );
-};
+      );
+    };
 
 export default TaskList;

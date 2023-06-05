@@ -4,23 +4,23 @@ import './Exercise.css'
 function ExerciseTracker() {
   const [days, setDays] = useState(Array(7).fill(false));
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]; // an array to display the days of the week
+  const userId = localStorage.getItem('userId');
 
-  useEffect(() => {
-    const userId = localStorage.getItem('userId');
-
+  const fetchData = () => {
     fetch(`http://localhost:8080/api/users/${userId}`)
       .then((response) => response.json())
       .then((user) => {
         const today = new Date();
-        const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay()));
-        const endOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 6));
+        const startOfWeek = new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate() - today.getUTCDay());
+        const endOfWeek = new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate() - today.getUTCDay() + 6);
 
-        const daysTemp = [...days];
+        const daysTemp = Array(7).fill(false); 
 
         user.moodRatings.forEach((moodRating) => {
           const moodRatingDate = new Date(moodRating.timestamp);
-          if (moodRatingDate >= startOfWeek && moodRatingDate <= endOfWeek && moodRating.exercise) {
-            const dayOfWeek = moodRatingDate.getDay();
+          const moodRatingDateUtc = new Date(moodRatingDate.getUTCFullYear(), moodRatingDate.getUTCMonth(), moodRatingDate.getUTCDate());
+          if (moodRatingDateUtc >= startOfWeek && moodRatingDateUtc <= endOfWeek && moodRating.exercise) {
+            const dayOfWeek = moodRatingDateUtc.getUTCDay();
             daysTemp[dayOfWeek] = true;
           }
         });
@@ -30,7 +30,20 @@ function ExerciseTracker() {
       .catch((error) => {
         console.error('Error:', error);
       });
-  }, []);
+  }
+
+  useEffect(() => {
+    console.log("useEffect is running..."); // log when useEffect is run
+    fetchData();
+
+    // Watch for changes in localStorage
+    const handleStorageChange = () => {
+      fetchData();
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);  // Removed dependency array so useEffect runs every time the component is mounted
 
   return (
     <div className="exercise-tracker-card">
@@ -44,6 +57,7 @@ function ExerciseTracker() {
         ))}
       </div>
     </div>
-  );}  
+  );
+}
 
 export default ExerciseTracker;
