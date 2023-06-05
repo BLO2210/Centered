@@ -23,7 +23,9 @@ function BaseLayout() {
           <NutritionBar />
         </div>
       </div>
+      <div class = "mood">
       <MoodBar />
+      </div>
       <Exercise />
     </div>
   );
