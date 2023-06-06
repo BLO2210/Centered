@@ -10,7 +10,7 @@ const SleepGauge = () => {
 
     const fetchAndProcessData = async () => {
         try {
-            const res = await axios.get(`http://localhost:8080/api/users/${userId}`);
+            const res = await axios.get(`https://centered-server.onrender.com/api/users/${userId}`);
             const sleepRatings = res.data.moodRatings
                 .filter(rating => moment(rating.timestamp).isSame(new Date(), 'week')) // filter for ratings from this week
                 .map(rating => rating.sleepQuality); // extract the sleepQuality field

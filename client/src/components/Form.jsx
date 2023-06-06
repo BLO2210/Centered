@@ -61,7 +61,7 @@ function Form() {
       const userId = localStorage.getItem('userId');
       const date = new Date().toISOString().split('T')[0];
   
-      fetch(`http://localhost:8080/api/mood-rating/${userId}/${date}`)
+      fetch(`https://centered-server.onrender.com/api/mood-rating/${userId}/${date}`)
           .then((response) => response.json())
           .then((data) => {
                   setFormId(data._id);
@@ -91,7 +91,7 @@ function Form() {
             tasks: tasks,
         };
 
-        const url = formId ? `http://localhost:8080/api/mood-rating/${formId}` : 'http://localhost:8080/api/mood-rating';
+        const url = formId ? `https://centered-server.onrender.com/api/mood-rating/${formId}` : 'https://centered-server.onrender.com/api/mood-rating';
         const method = formId ? 'PUT' : 'POST';
 
         fetch(url, {

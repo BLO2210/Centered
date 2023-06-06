@@ -11,7 +11,7 @@ const TaskList = () => {
       const fetchTasks = async () => {
         try {
           if (userId) {
-            const response = await axios.get(`http://localhost:8080/api/users/${userId}`);
+            const response = await axios.get(`https://centered-server.onrender.com/api/users/${userId}`);
       
             const today = new Date();
             const todayString = today.toISOString().split('T')[0];
@@ -57,7 +57,7 @@ const TaskList = () => {
       
           setTasks(updatedTasks);
       
-          await axios.put(`http://localhost:8080/api/tasks/${userId}/${taskId}`, {
+          await axios.put(`https://centered-server.onrender.com/api/tasks/${userId}/${taskId}`, {
             isComplete: isChecked,
           });
         } catch (error) {
