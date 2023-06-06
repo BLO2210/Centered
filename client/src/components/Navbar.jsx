@@ -34,7 +34,7 @@ const Navbar = () => {
         )}
       </div>
       <div className={`centered ${centeredExpanded ? 'expanded' : ''}`}>
-        <span className="centered-logo">Centered</span>
+        <span className="centered-logo"><Link to = "/">Centered</Link></span>
       </div>
       <div className="right-menu">
         <button onClick={handleLogout}>

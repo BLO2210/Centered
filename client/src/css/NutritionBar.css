@@ -1,33 +1,36 @@
-/* NutritionBar.css */
-/* NutritionBar.css */
-/* NutritionBar.css */
 .progress-card {
-    background-color: #f5f5f5;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-width: 400px; /* Adjust the maximum width as per your preference */
-    margin: 20px auto; /* Add margin to create spacing */
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px; 
+  margin: 20px auto; 
+}
+.title {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  background-color: #eee;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  background-color: rgb(255, 93, 93);
+  height: 100%;
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 767px) {
+  .progress-card {
+    margin: 10px auto;
+    max-width: 300px;
   }
-  
-  
-  
-  .title {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .progress-bar {
-    background-color: #eee;
-    height: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  .progress-bar-fill {
-    background-color: rgb(242, 137, 137); /* Adjust the color as per your preference */
-    height: 100%;
-  }
+}
+
   
