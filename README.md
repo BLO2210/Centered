@@ -24,5 +24,3 @@ Contributions, issues, and feature requests are welcome!
 
 License
 This project is MIT licensed.
-
-Please note that this README is a general guideline, and you might need to adjust it based on your project's specifics.
