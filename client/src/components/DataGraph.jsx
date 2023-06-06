@@ -18,10 +18,10 @@ ChartJS.register(
 )
 
 const colors = {
-  rating: 'rgba(75, 192, 192, 0.2)',
-  sleepQuality: 'rgba(255, 206, 86, 0.2)',
-  nutritionRating: 'rgba(255, 99, 132, 0.2)',
-  exercise: 'rgba(153, 102, 255, 0.2)'
+  rating: 'blue',
+  sleepQuality: 'red',
+  nutritionRating: 'orange',
+  exercise: 'green'
 };
 
 const MoodGraph = ({ startDate, setStartDate, endDate, setEndDate }) => {

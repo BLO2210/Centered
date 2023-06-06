@@ -69,10 +69,12 @@ const UserAverages = ({ startDate, endDate }) => {
         <div className='average-item'>
           <span className='average-label'>Sleep Quality:</span> 
           <span className='average-value sleep-quality'>{averages.sleepQuality}</span>
+          <span>out of 10</span>
         </div>
         <div className='average-item'>
           <span className='average-label'>Nutrition Rating:</span> 
           <span className='average-value nutrition-rating'>{averages.nutritionRating}</span>
+          <span>out of 4</span>
         </div>
         <div className='average-item'>
           <span className='average-label'>Days Exercised:</span> 

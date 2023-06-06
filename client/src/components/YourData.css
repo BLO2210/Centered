@@ -1,0 +1,14 @@
+/* YourData.css */
+
+/* Spacing for the navbar */
+.navbar {
+    margin-bottom: 20px;
+  }
+  
+  /* Mobile responsive styles */
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 10px;
+    }
+  }
+  
