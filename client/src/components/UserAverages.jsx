@@ -10,7 +10,7 @@ const UserAverages = ({ startDate, endDate }) => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/users/${userId}`);
+      const response = await axios.get(`https://centered-server.onrender.com/api/users/${userId}`);
       if (response.status !== 200) {
         console.error(`Error: Received status code ${response.status}`);
       } else if (!response.data.moodRatings) {

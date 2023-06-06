@@ -7,7 +7,7 @@ function ExerciseTracker() {
   const userId = localStorage.getItem('userId');
 
   const fetchData = () => {
-    fetch(`http://localhost:8080/api/users/${userId}`)
+    fetch(`https://centered-server.onrender.com/api/users/${userId}`)
       .then((response) => response.json())
       .then((user) => {
         const today = new Date();

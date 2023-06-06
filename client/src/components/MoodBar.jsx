@@ -23,7 +23,7 @@ function MoodRatingBar() {
   useEffect(() => {
     const userId = localStorage.getItem('userId');
 
-    fetch(`http://localhost:8080/api/users/${userId}`)
+    fetch(`https://centered-server.onrender.com/api/users/${userId}`)
       .then((response) => response.json())
       .then((data) => {
         const [weekStart, weekEnd] = getWeekDates();

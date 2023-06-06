@@ -16,7 +16,7 @@ function LogIn(props) {
   };
 
   const handleLogin = async () => {
-    const response = await fetch('http://localhost:8080/login', {
+    const response = await fetch('https://centered-server.onrender.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
