@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
 .background-image {
-  background: url('http://m.gettywallpapers.com/wp-content/uploads/2022/07/Wallpaper-Aesthetic-Nature.jpg') no-repeat center center fixed; 
+  background-image: url('img/bg1.jpeg');
   background-size: cover;
   font-family: 'Poppins', Arial, sans-serif;
   margin: 0;
