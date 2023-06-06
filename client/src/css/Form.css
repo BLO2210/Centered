@@ -1,11 +1,13 @@
 .form-container {
     max-width: 800px;
+    height: 100%;
     margin: 40px auto 0;
     padding: 20px;
     background-color: #ffffff96;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     font-family: 'Roboto', Arial, sans-serif;
+    text-align: center;
   }
   
   .form-container h1 {
